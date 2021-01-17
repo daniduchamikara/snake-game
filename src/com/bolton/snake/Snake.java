@@ -1,9 +1,17 @@
 package com.bolton.snake;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import org.junit.Test;
+
+import com.sun.corba.se.spi.orbutil.fsm.State;
+
+import javafx.geometry.Point2D;
 
 
 /**
@@ -31,6 +39,7 @@ public class Snake {
 		initDefaults();
 	}
 
+
 	public void changeDirection(Route route) {
 		this.route = route;
 	}
@@ -46,7 +55,7 @@ public class Snake {
 				over = true;
 			}
 			break;
-
+			
 		case DOWN:
 			moveBody();
 			// head

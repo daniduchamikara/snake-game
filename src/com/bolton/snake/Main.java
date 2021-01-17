@@ -21,6 +21,7 @@ public class Main extends JFrame {
 
 	private boolean started = false;
 
+	
 	public Main() {
 		initComponents();
 		initGame();

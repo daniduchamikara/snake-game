@@ -28,6 +28,7 @@ public class Food {
 		}
 	}
 
+	
 	private double getNew() {
 		double d = 1111;
 		while (d >= 400 || d % 20 != 0) {
