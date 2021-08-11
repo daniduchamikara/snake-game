@@ -1,12 +1,12 @@
-package com.bolton.snake;
+package edu.bolton.oop.snake;
 
 import java.awt.geom.Ellipse2D;
 
 /**
- * @author hasantha.uk
+ * @author Danidu
  *
  */
-public class Food {
+public class Gem {
 
 	public static final int XSIZE = 20;
 	public static final int YSIZE = 20;
@@ -14,7 +14,7 @@ public class Food {
 	private double x;
 	private double y;
 
-	public Food(double x, double y) {
+	public Gem(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -28,9 +28,11 @@ public class Food {
 		}
 	}
 
-	
+
 	private double getNew() {
 		double d = 1111;
+		double masterFood= 0.0;
+		masterFood++;
 		while (d >= 400 || d % 20 != 0) {
 			d = Math.random() * 1000;
 			d = (int) d;

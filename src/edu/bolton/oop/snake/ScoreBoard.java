@@ -1,4 +1,4 @@
-package com.bolton.snake;
+package edu.bolton.oop.snake;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 public class ScoreBoard extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	public static final int PANEL_WIDTH = 400;
+	public static final int PANEL_WIDTH = 600;
 	public static final int PANEL_HEIGHT = 50;
 
 	private final Font FONT;
@@ -43,9 +43,9 @@ public class ScoreBoard extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 
 		g2.setFont(FONT);
-		g2.setPaint(new Color(255, 255, 215)); // white
+		g2.setPaint(new Color(0, 177, 64)); // white
 		g2.drawString(SCORE_LABEL, 15, 32);
-		g2.setPaint(new Color(215, 34, 38)); // RED
+		g2.setPaint(new Color(0, 177, 64)); // RED
 		g2.drawString(score, 105, 32);
 	}
 

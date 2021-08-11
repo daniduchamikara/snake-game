@@ -1,4 +1,4 @@
-package com.bolton.snake;
+package edu.bolton.oop.snake;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;

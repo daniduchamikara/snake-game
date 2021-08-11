@@ -1,21 +1,13 @@
-package com.bolton.snake;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+package edu.bolton.oop.snake;
 
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.Test;
-
-import com.sun.corba.se.spi.orbutil.fsm.State;
-
-import javafx.geometry.Point2D;
-
 
 /**
- * @author hasantha.uk
+ * @author Danidu
  *
  */
 public class Snake {
@@ -23,29 +15,29 @@ public class Snake {
 	public static final int XSIZE = 20;
 	public static final int YSIZE = 20;
 
-	private GaminField gameField;
+	private Ground gameField;
 	private ScoreBoard scoreBoard;
 	private List<Ellipse2D.Double> snakeParts;
-	private Route route;
+	private Directions directions;
 
 	private Ellipse2D.Double temp;
 	private Ellipse2D.Double ass;
 
 	private boolean over = false;
 
-	public Snake(GaminField gameField, ScoreBoard scoreBoard) {
+	public Snake(Ground gameField, ScoreBoard scoreBoard) {
 		this.gameField = gameField;
 		this.scoreBoard = scoreBoard;
 		initDefaults();
 	}
 
 
-	public void changeDirection(Route route) {
-		this.route = route;
+	public void changeDirection(Directions directions) {
+		this.directions = directions;
 	}
 
 	public void move() {
-		switch (route) {
+		switch (directions) {
 		case UP:
 			moveBody();
 			// head
@@ -55,7 +47,7 @@ public class Snake {
 				over = true;
 			}
 			break;
-			
+
 		case DOWN:
 			moveBody();
 			// head
@@ -98,7 +90,7 @@ public class Snake {
 
 	public void check() {
 		Ellipse2D.Double head = snakeParts.get(0);
-		Food food = gameField.getFood();
+		Gem gem = gameField.getFood();
 
 		// Ate itself
 		for (int i = 1; i < snakeParts.size(); i++) {
@@ -108,9 +100,9 @@ public class Snake {
 			}
 		}
 		// Ate food
-		if (head.getMinX() == food.getShape().getMinX() && head.getMinY() == food.getShape().getMinY()) {
+		if (head.getMinX() == gem.getShape().getMinX() && head.getMinY() == gem.getShape().getMinY()) {
 			scoreBoard.addPoints(10);
-			food.next(this);
+			gem.next(this);
 			snakeParts.add(ass);
 		}
 	}
@@ -133,8 +125,6 @@ public class Snake {
 		snakeParts = Collections.synchronizedList(new ArrayList<Ellipse2D.Double>());
 		snakeParts.add(new Ellipse2D.Double(260, 260, 20, 20));
 		snakeParts.add(new Ellipse2D.Double(260, 280, 20, 20));
-		snakeParts.add(new Ellipse2D.Double(260, 300, 20, 20));
-		snakeParts.add(new Ellipse2D.Double(260, 320, 20, 20));
 	}
 
 }

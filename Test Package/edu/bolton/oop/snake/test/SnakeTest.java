@@ -1,44 +1,29 @@
-package com.bolton.snake.test;
+package edu.bolton.oop.snake.test;
 
-import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
+import edu.bolton.oop.snake.*;
+import org.junit.Test;
 
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Ellipse2D.Double;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
-import org.junit.jupiter.api.Test;
-
-import com.bolton.snake.Food;
-import com.bolton.snake.GaminField;
-import com.bolton.snake.Route;
-import com.bolton.snake.ScoreBoard;
-import com.bolton.snake.Snake;
-
-import javafx.geometry.Point2D;
+import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 class SnakeTest {
 
 	@Test
-	public void testSnakeMovesUP() {
+	public void sanake () {
 		ScoreBoard scoreBoard;
-		GaminField gameField;
+		Ground gameField;
 		scoreBoard = new ScoreBoard();
-		gameField = new GaminField();
+		gameField = new Ground();
 		Snake snake = new Snake(gameField, scoreBoard);
-		Route.DOWN.toString();
-		Route direction = Route.UP;
+		Directions.DOWN.toString();
+		Directions direction = Directions.UP;
 
-		switch (Route.UP) {
+		switch (Directions.UP) {
 		case UP:
-			assertEquals(Route.UP.toString(), "UP");
+			assertEquals(Directions.UP.toString(), "UP");
 
 			break;
 
@@ -52,15 +37,15 @@ class SnakeTest {
 	@Test
 	public void testSnakeMovesDown() {
 		ScoreBoard scoreBoard;
-		GaminField gameField;
+		Ground gameField;
 		scoreBoard = new ScoreBoard();
-		gameField = new GaminField();
+		gameField = new Ground();
 		Snake snake = new Snake(gameField, scoreBoard);
-		Route.DOWN.toString();
+		Directions.DOWN.toString();
 
-		switch (Route.DOWN) {
+		switch (Directions.DOWN) {
 		case DOWN:
-			assertEquals(Route.DOWN.toString(), "DOWN");
+			assertEquals(Directions.DOWN.toString(), "DOWN");
 
 			break;
 
@@ -74,15 +59,15 @@ class SnakeTest {
 	@Test
 	public void testSnakeMovesLeft() {
 		ScoreBoard scoreBoard;
-		GaminField gameField;
+		Ground gameField;
 		scoreBoard = new ScoreBoard();
-		gameField = new GaminField();
+		gameField = new Ground();
 		Snake snake = new Snake(gameField, scoreBoard);
-		Route.LEFT.toString();
+		Directions.LEFT.toString();
 
-		switch (Route.LEFT) {
+		switch (Directions.LEFT) {
 		case LEFT:
-			assertEquals(Route.LEFT.toString(), "LEFT");
+			assertEquals(Directions.LEFT.toString(), "LEFT");
 
 			break;
 
@@ -96,15 +81,15 @@ class SnakeTest {
 	@Test
 	public void testSnakeMovesRight() {
 		ScoreBoard scoreBoard;
-		GaminField gameField;
+		Ground gameField;
 		scoreBoard = new ScoreBoard();
-		gameField = new GaminField();
+		gameField = new Ground();
 		Snake snake = new Snake(gameField, scoreBoard);
-		Route.RIGHT.toString();
+		Directions.RIGHT.toString();
 
-		switch (Route.RIGHT) {
+		switch (Directions.RIGHT) {
 		case RIGHT:
-			assertEquals(Route.RIGHT.toString(), "RIGHT");
+			assertEquals(Directions.RIGHT.toString(), "RIGHT");
 
 			break;
 
@@ -119,18 +104,18 @@ class SnakeTest {
 	public void testSnakeFoodCollision() {
 		ScoreBoard scoreBoard;
 
-		GaminField gameField;
+		Ground gameField;
 		scoreBoard = new ScoreBoard();
-		gameField = new GaminField();
+		gameField = new Ground();
 		boolean over = false;
 		Snake snake = new Snake(gameField, scoreBoard);
 		List<Ellipse2D.Double> snakeParts = snake.getParts();
 
 		Ellipse2D.Double head = snakeParts.get(0);
-		Food food = gameField.getFood();
+		Gem gem = gameField.getFood();
 		scoreBoard.addPoints(10);
-		
-		if(head.getMaxX() == food.getShape().getMinX() && head.getMinY() == food.getShape().getMinY()) {
+
+		if(head.getMaxX() == gem.getShape().getMinX() && head.getMinY() == gem.getShape().getMinY()) {
 			assertEquals(scoreBoard,10);
 		}
 
@@ -141,27 +126,27 @@ class SnakeTest {
 	public void testSnakeDies() {
 		ScoreBoard scoreBoard;
 
-		GaminField gameField;
+		Ground gameField;
 		scoreBoard = new ScoreBoard();
-		gameField = new GaminField();
+		gameField = new Ground();
 		boolean over = false;
 		Snake snake = new Snake(gameField, scoreBoard);
 		List<Ellipse2D.Double> snakeParts = snake.getParts();
 
 		Ellipse2D.Double head = snakeParts.get(0);
-		Food food = gameField.getFood();
+		Gem gem = gameField.getFood();
 
-		snake.changeDirection(Route.UP);
+		snake.changeDirection(Directions.UP);
         snake.move();
-        snake.changeDirection(Route.DOWN);
+        snake.changeDirection(Directions.DOWN);
         snake.move();
-        snake.changeDirection(Route.LEFT);
+        snake.changeDirection(Directions.LEFT);
         snake.move();
-        snake.changeDirection(Route.RIGHT);
+        snake.changeDirection(Directions.RIGHT);
         snake.move();
 
         assertTrue(snake.isGameOver());
-		
+
 	}
 
 }

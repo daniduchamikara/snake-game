@@ -1,4 +1,4 @@
-package com.bolton.snake;
+package edu.bolton.oop.snake;
 
 import java.awt.EventQueue;
 import java.awt.GridBagLayout;
@@ -12,16 +12,16 @@ public class Main extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private ScoreBoard scoreBoard;
-	private GaminField gameField;
+	private Ground gameField;
 	private Thread thread;
 	private Snake snake;
 
 	// Current Routing of the snake
-	private Route direction = Route.UP;
+	private Directions direction = Directions.UP;
 
 	private boolean started = false;
 
-	
+
 	public Main() {
 		initComponents();
 		initGame();
@@ -35,7 +35,7 @@ public class Main extends JFrame {
 		scoreBoard = new ScoreBoard();
 		add(scoreBoard, new Grid(0, 8, 8, 1));
 
-		gameField = new GaminField();
+		gameField = new Ground();
 		add(gameField, new Grid(0, 0, 8, 8));
 
 	}
@@ -48,7 +48,7 @@ public class Main extends JFrame {
 
 	private void initFrame() {
 		pack();
-		setTitle("Snake");
+		setTitle("Snake Game");
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -61,12 +61,12 @@ public class Main extends JFrame {
 	}
 
 	public void gameOver() {
-		int returnValue = JOptionPane.showConfirmDialog(this, "Do you want to start a new game?", "GAME OVER!",
+		int returnValue = JOptionPane.showConfirmDialog(this, "Press ok if you want to retry?", "GAME OVER!",
 				JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 
 		switch (returnValue) {
 		case JOptionPane.OK_OPTION:
-			direction = Route.UP;
+			direction = Directions.UP;
 			started = false;
 			snake = new Snake(gameField, scoreBoard);
 			scoreBoard.clear();
@@ -91,7 +91,7 @@ public class Main extends JFrame {
 	 * Java Swing is not thread safe we have to run the code within the event
 	 * dispatch thread. You can read this
 	 * "https://docs.oracle.com/javase/tutorial/uiswing/concurrency/dispatch.html">
-	 * 
+	 *
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -108,46 +108,46 @@ public class Main extends JFrame {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			if (e.getKeyCode() == KeyEvent.VK_UP) {
-				if (direction == Route.DOWN)
+				if (direction == Directions.DOWN)
 					return;
 				if (!started)
 					newGame();
 				if (snake != null) {
-					snake.changeDirection(Route.UP);
-					direction = Route.UP;
+					snake.changeDirection(Directions.UP);
+					direction = Directions.UP;
 				}
 			}
 
 			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-				if (direction == Route.UP)
+				if (direction == Directions.UP)
 					return;
 				if (!started)
 					newGame();
 				if (snake != null) {
-					snake.changeDirection(Route.DOWN);
-					direction = Route.DOWN;
+					snake.changeDirection(Directions.DOWN);
+					direction = Directions.DOWN;
 				}
 			}
 
 			if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-				if (direction == Route.RIGHT)
+				if (direction == Directions.RIGHT)
 					return;
 				if (!started)
 					newGame();
 				if (snake != null) {
-					snake.changeDirection(Route.LEFT);
-					direction = Route.LEFT;
+					snake.changeDirection(Directions.LEFT);
+					direction = Directions.LEFT;
 				}
 			}
 
 			if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-				if (direction == Route.LEFT)
+				if (direction == Directions.LEFT)
 					return;
 				if (!started)
 					newGame();
 				if (snake != null) {
-					snake.changeDirection(Route.RIGHT);
-					direction = Route.RIGHT;
+					snake.changeDirection(Directions.RIGHT);
+					direction = Directions.RIGHT;
 				}
 			}
 		}

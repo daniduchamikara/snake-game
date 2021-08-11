@@ -1,22 +1,22 @@
-package com.bolton.snake;
+package edu.bolton.oop.snake;
 
 public class GamePanel implements Runnable {
 
-	public static final int DELAY = 400;
+	public static final int DELAY = 250;
 
 	private Main main;
-	private GaminField gameField;
+	private Ground gameField;
 	private Snake snake;
-	private Food food;
+	private Gem gem;
 
-	public GamePanel(GaminField gameField, Snake snake, Main main) {
-		food = new Food(100, 100);
+	public GamePanel(Ground gameField, Snake snake, Main main) {
+		gem = new Gem(300, 300);
 		this.main = main;
 		this.snake = snake;
 		this.gameField = gameField;
 
 		this.gameField.setSnakeParts(snake.getParts());
-		this.gameField.setApple(food);
+		this.gameField.setApple(gem);
 	}
 
 	@Override
